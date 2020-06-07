@@ -12,10 +12,19 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.post('/random', function (request, response) {
     console.log(request);
-    response.json({
-        "response_type": "in_channel",
-        "text": "Yayy, the command worked"
-    });
+
+    const channelName = request.body.channel_name;
+    if (channelName === 'privategroup' || channelName === 'directmessage') {
+        response.json({
+            response_type: "in_channel",
+            text: ":cry: sorry but I can only work in public channels for now."
+        });
+    } else {
+        response.json({
+            response_type: "ephemeral",
+            text: "Wait a minute, I am picking a volunteer"
+        });
+    }
 });
 
 app.listen(8080, () => {
