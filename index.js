@@ -1,8 +1,13 @@
 'use strict';
 
+require('dotenv').config();
+
+const slackOauthToken = process.env.SLACK_OAUTH_TOKEN;
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const axios = require('axios');
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 const cors = require("cors");
@@ -20,9 +25,26 @@ app.post('/random', function (request, response) {
             text: ":cry: sorry but I can only work in public channels for now."
         });
     } else {
+        const channelId = request.body.channel_id;
+        const lateResponseUrl = request.body.response_url;
+
         response.json({
             response_type: "ephemeral",
             text: "Wait a minute, I am picking a volunteer"
+        });
+
+        axios.get('https://slack.com/api/conversations.members', {
+            params: {
+                token: slackOauthToken,
+                channel: channelId
+            }
+        }).then(response => response.data.members).then(members => {
+            const randomMemberId = members[Math.floor(Math.random() * members.length)];
+
+            axios.post(lateResponseUrl, {
+                response_type: "in_channel",
+                text: `:bell::bell::bell: lucky volunteer of this draw is <@${randomMemberId}>`
+            });
         });
     }
 });
