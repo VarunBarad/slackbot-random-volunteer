@@ -1,0 +1,25 @@
+{
+  "name": "slackbot-random-volunteer",
+  "version": "1.0.0",
+  "description": "A slack bot that selects a random participant from the channel when invoked",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VarunBarad/slackbot-random-volunteer.git"
+  },
+  "author": "Varun Barad <varun@varunbarad.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VarunBarad/slackbot-random-volunteer/issues"
+  },
+  "homepage": "https://github.com/VarunBarad/slackbot-random-volunteer#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
+  }
+}
