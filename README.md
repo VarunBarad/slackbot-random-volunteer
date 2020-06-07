@@ -2,6 +2,8 @@
 
 This is the code for a simple slack-bot that when invoked with `/random-volunteer` will select a participant from that channel at random.
 
+__Limitation:__ Currently this bot only supports picking out volunteers in public channels.
+
 ## Running this slack-bot
 
 To get this code working, you have to:
