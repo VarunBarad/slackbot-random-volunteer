@@ -49,6 +49,7 @@ app.post('/random', function (request, response) {
     }
 });
 
-app.listen(8080, () => {
-    console.log('Your app is listening on port 8080');
+const portNumber = process.env.PORT;
+app.listen(portNumber, () => {
+    console.log(`Your app is listening on port ${portNumber}`);
 });
