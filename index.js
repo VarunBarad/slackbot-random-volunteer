@@ -44,7 +44,11 @@ app.post('/random', function (request, response) {
             axios.post(lateResponseUrl, {
                 response_type: "in_channel",
                 text: `:bell::bell::bell: lucky volunteer of this draw is <@${randomMemberId}>`
+            }).catch(reason => {
+                console.error(reason);
             });
+        }).catch(reason => {
+            console.error(reason);
         });
     }
 });
